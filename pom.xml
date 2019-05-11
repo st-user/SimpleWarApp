@@ -34,10 +34,6 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.2</version>
 				<configuration>
-					<outputDirectory>
-		 						C:/tools/apache-tomcat-9.0.19/webapps 
-<!-- 							C:/tools/wildfly-16.0.0.Final/standalone/deployments -->
-					</outputDirectory>
 					<warName>
 						SimpleWarApp
 					</warName>
