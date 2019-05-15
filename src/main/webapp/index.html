@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 </head>
 <body>
-
     <form action="/SimpleWarApp/app/simple" method="post">
         <!-- The value is Japanese character '\u3042' -->
         <input type="text" name="hello" value="あ"/>
@@ -14,7 +13,17 @@
     <script>
         document.getElementById('the_button').addEventListener('click', function() {
             var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            	if (this.status === 200 && this.readyState === this.DONE) {
+            		alert(this.responseText);
+            	}
+            };
+            <!-- Decode the  response body by UTF-8 -->
+            xhttp.overrideMimeType('Content-Type: text/plain; charset=UTF-8');
             xhttp.open('POST', '/SimpleWarApp/app/simple');
+            <!-- For the purpose of testing, I intentionally omit charset parameter from Content-Type header, -->
+            <!-- so I can avoid charset parameter to have an effect on the character encoding of servlets. -->
+            <!-- Even when charset parameter is omitted, XMLHttpRequest encodes the request body by UTF-8. -->
             xhttp.setRequestHeader('Content-Type', 'text/plain');
             <!-- The body content is Japanese character '\u3042' -->
             xhttp.send('あ');
